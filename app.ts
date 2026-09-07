@@ -1,8 +1,24 @@
-import express = require("express");
+import type { NextFunction, Request, Response } from "express";
+
+const express = require("express");
+const morgan = require("morgan");
 
 const app = express();
 
-app.get("/", (req, res) => {
+// =========== set up view engine ==========
+app.set("view engine", "ejs");
+app.set("views", "./views");
+
+// =============== middle ware ============
+const middleware = [
+  morgan("dev"),
+  express.static("public"),
+  express.json(),
+  express.urlencoded({ extended: true }),
+];
+app.use(middleware);
+
+app.get("/", (req: Request, res: Response) => {
   res.json({ message: "Hello, World!" });
 });
 
