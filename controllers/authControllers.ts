@@ -4,7 +4,10 @@ exports.signupGetController = async (
   req: Request,
   res: Response,
   next: NextFunction,
-) => {};
+) => {
+  res.render("pages/auth/signup", { title: "Create a new account" });
+};
+
 exports.signupPostController = async (
   req: Request,
   res: Response,

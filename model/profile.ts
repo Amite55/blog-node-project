@@ -17,6 +17,7 @@ const profileSchema = new Schema(
       ref: User,
       required: true,
     },
+    name: { type: String, trim: true, minlength: 30 },
     posts: [
       {
         type: Schema.Types.ObjectId,
