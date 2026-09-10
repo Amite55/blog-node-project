@@ -1,11 +1,10 @@
 const { Schema, model } = require("mongoose");
-const Post = require("./Posts");
 
 const commentSchema = new Schema(
   {
     post: {
       type: Schema.Types.ObjectId,
-      ref: Post,
+      ref: "Post",
       required: true,
     },
     user: {

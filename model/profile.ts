@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const User = require("./User");
 
 const profileSchema = new Schema(
   {
@@ -14,7 +13,7 @@ const profileSchema = new Schema(
     },
     user: {
       type: Schema.Types.ObjectId,
-      ref: User,
+      ref: "User",
       required: true,
     },
     name: { type: String, trim: true, minlength: 30 },

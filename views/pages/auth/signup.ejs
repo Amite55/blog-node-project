@@ -24,9 +24,23 @@
                                                         />
                                                         <div class="form-text">Username must be at least 15 characters.</div>
                                                 </div>
+                                                <div class="mb-3">
+                                                        <label class="form-label"  for="phone">Phone</label>
+                                                        <input
+                                                                class="form-control"
+                                                                id="phone"
+                                                                name="phone"
+                                                                type="text"
+                                                                minlength="5"
+                                                                autocomplete="phone"
+                                                                placeholder="Enter your phone number"
+                                                                required
+                                                        />
+                                                        <div class="form-text">Phone number must be valid.</div>
+                                                </div>
 
                                                 <div class="mb-3">
-                                                        <label class="form-labeor="email">Email address</label>
+                                                        <label class="form-label" for="email">Email address</label>
                                                         <input
                                                                 class="form-control"
                                                                 id="email"
@@ -48,6 +62,20 @@
                                                                 minlength="8"
                                                                 autocomplete="new-password"
                                                                 placeholder="Create a password"
+                                                                required
+                                                        />
+                                                        <div class="form-text">Password must be at least 8 characters.</div>
+                                                </div>
+                                                <div class="mb-4">
+                                                        <label class="form-label" for="password">Confirm Password</label>
+                                                        <input
+                                                                class="form-control"
+                                                                id="confirmPassword"
+                                                                name="confirmPassword"
+                                                                type="password"
+                                                                minlength="8"
+                                                                autocomplete="new-password"
+                                                                placeholder="Confirm your password"
                                                                 required
                                                         />
                                                         <div class="form-text">Password must be at least 8 characters.</div>

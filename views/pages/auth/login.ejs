@@ -1,0 +1,61 @@
+<%- include("../../partials/head.ejs") %>
+
+<main class="bg-light py-5">
+	<section class="container" aria-labelledby="login-title">
+		<div class="row justify-content-center align-items-stretch shadow">
+		<div class="col-lg-5 bg-dark text-light p-4 p-md-5 d-flex flex-column justify-content-between">
+			<div>
+				<div class="border border-warning text-warning d-inline-flex align-items-center justify-content-center fs-4 p-2" aria-hidden="true">M</div>
+				<div class="text-warning small fw-bold text-uppercase mt-4">My Blog</div>
+				<h1 id="login-title" class="display-4 fw-bold mt-4">Welcome back.</h1>
+				<p class="text-white-50 lh-lg">Return to the ideas, stories, and conversations that matter to you.</p>
+			</div>
+			<span class="small text-white-50">Read deeply. Write freely.</span>
+		</div>
+
+		<div class="col-lg-7 bg-white p-4 p-md-5">
+			<h2 class="h1 fw-bold text-dark">Log in</h2>
+			<p class="text-secondary mb-4">Enter your details to continue.</p>
+
+			<form action="/auth/login" method="POST">
+				<div class="mb-3">
+					<label class="form-label fw-semibold" for="email">Email address</label>
+					<input
+						class="form-control form-control-lg"
+						id="email"
+						name="email"
+						type="email"
+						autocomplete="email"
+						placeholder="you@example.com"
+						required
+					/>
+				</div>
+
+				<div class="mb-4">
+					<label class="form-label fw-semibold" for="password">Password</label>
+					<input
+						class="form-control form-control-lg"
+						id="password"
+						name="password"
+						type="password"
+						autocomplete="current-password"
+						placeholder="Enter your password"
+						required
+					/>
+				</div>
+
+				<button class="btn btn-dark btn-lg w-100" type="submit">Continue to My Blog</button>
+			</form>
+
+			<p class="text-center text-secondary mt-4 mb-0">
+				New here? <a class="link-dark fw-semibold" href="/auth/signup">Create an account</a>
+			</p>
+		</div>
+	</section>
+</main>
+
+
+<%- include("../../partials/footer.ejs") %>
+
+</body>
+</html>
