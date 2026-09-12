@@ -44,7 +44,26 @@ exports.loginPostController = async (
   req: Request,
   res: Response,
   next: NextFunction,
-) => {};
+) => {
+  let { email, password } = req.body;
+
+  try {
+    let user = await User.findOne({ email });
+    if (!user) {
+      return res.json({ message: "Invalid credentials" });
+    }
+    // ========== compare password ==========
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.json({ message: "Invalid credentials" });
+    }
+    console.log("successfully login", user);
+    res.render("pages/auth/login", { title: "Log in to your  account" });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
 
 exports.logoutController = async (
   req: Request,

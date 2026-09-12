@@ -7,6 +7,9 @@ const morgan = require("morgan");
 // ============= imports routes ==============
 const authRoutes = require("./routes/authRoute");
 
+// =========== imports playground routes ==========
+const validatorRoutes = require("./playground/validator");
+
 const app = express();
 
 // =========== set up view engine ==========
@@ -24,6 +27,7 @@ const middleware = [
 app.use(middleware);
 
 app.use("/auth", authRoutes);
+app.use("/playground", validatorRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.json({ message: "Hello, New blog full stack site " });

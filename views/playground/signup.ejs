@@ -1,0 +1,100 @@
+<%- include("../partials/head.ejs") %>
+
+<main class="container py-5">
+        <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                        <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4 p-md-5">
+                                        <div class="text-center mb-4">
+                                                <h1 class="h3 fw-bold mb-2">Create your account</h1>
+                                                <p class="text-secondary mb-0">Join My Blog and start sharing your ideas.</p>
+                                        </div>
+                                        <form action="/auth/signup" method="POST">
+                                                <div class="mb-3">
+                                                        <label class="form-label"  for="userName">Username</label>
+                                                        <input
+                                                                class="form-control"
+                                                                id="userName"
+                                                                name="userName"
+                                                                type="text"
+                                                                minlength="15"
+                                                                autocomplete="username"
+                                                                placeholder="Enter your username"
+                                                                required
+                                                        />
+                                                        <div class="form-text">Username must be at least 15 characters.</div>
+                                                </div>
+                                                <div class="mb-3">
+                                                        <label class="form-label"  for="phone">Phone</label>
+                                                        <input
+                                                                class="form-control"
+                                                                id="phone"
+                                                                name="phone"
+                                                                type="text"
+                                                                minlength="5"
+                                                                autocomplete="phone"
+                                                                placeholder="Enter your phone number"
+                                                                required
+                                                        />
+                                                        <div class="form-text">Phone number must be valid.</div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                        <label class="form-label" for="email">Email address</label>
+                                                        <input
+                                                                class="form-control"
+                                                                id="email"
+                                                                name="email"
+                                                                type="email"
+                                                                autocomplete="email"
+                                                                placeholder="you@example.com"
+                                                                required
+                                                        />
+                                                </div>
+
+                                                <div class="mb-4">
+                                                        <label class="form-label" for="password">Password</label>
+                                                        <input
+                                                                class="form-control"
+                                                                id="password"
+                                                                name="password"
+                                                                type="password"
+                                                                minlength="8"
+                                                                autocomplete="new-password"
+                                                                placeholder="Create a password"
+                                                                required
+                                                        />
+                                                        <div class="form-text">Password must be at least 8 characters.</div>
+                                                </div>
+                                                <div class="mb-4">
+                                                        <label class="form-label" for="password">Confirm Password</label>
+                                                        <input
+                                                                class="form-control"
+                                                                id="confirmPassword"
+                                                                name="confirmPassword"
+                                                                type="password"
+                                                                minlength="8"
+                                                                autocomplete="new-password"
+                                                                placeholder="Confirm your password"
+                                                                required
+                                                        />
+                                                        <div class="form-text">Password must be at least 8 characters.</div>
+                                                </div>
+
+                                                <button class="btn btn-dark w-100" type="submit">Create account</button>
+                                        </form>
+
+                                        <p class="text-center text-secondary mt-4 mb-0">
+                                                Already have an account?
+                                                <a class="link-dark fw-semibold" href="/auth/login">Log in</a>
+                                        </p>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</main>
+
+<%- include("../partials/footer.ejs") %>
+
+</body>
+</html>
