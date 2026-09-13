@@ -1,6 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
 const User = require("../model/User");
 import bcrypt = require("bcryptjs");
+import errorFormatter = require("../utils/ValidationErrorFormator");
+const { validationResult } = require("express-validator");
 
 exports.signupGetController = async (
   req: Request,
@@ -14,6 +16,12 @@ exports.signupPostController = async (
   res: Response,
   next: NextFunction,
 ) => {
+  // ================ error formatter ==============
+  const errors = validationResult(req).formatWith(errorFormatter);
+  if (!errors.isEmpty()) {
+    return console.log(errors.mapped());
+  }
+
   let { userName, email, password, phone, confirmPassword } = req.body;
   try {
     // ============= hash password ==============

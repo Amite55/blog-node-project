@@ -8,7 +8,7 @@ const morgan = require("morgan");
 const authRoutes = require("./routes/authRoute");
 
 // =========== imports playground routes ==========
-const validatorRoutes = require("./playground/validator");
+// const validatorRoutes = require("./playground/validator");
 
 const app = express();
 
@@ -27,7 +27,7 @@ const middleware = [
 app.use(middleware);
 
 app.use("/auth", authRoutes);
-app.use("/playground", validatorRoutes);
+// app.use("/playground");
 
 app.get("/", (req: Request, res: Response) => {
   res.json({ message: "Hello, New blog full stack site " });
