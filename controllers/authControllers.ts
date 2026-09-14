@@ -9,8 +9,9 @@ exports.signupGetController = async (
   res: Response,
   next: NextFunction,
 ) => {
-  res.render("pages/auth/signup", { title: "Create a new account" });
+  res.render("pages/auth/signup", { title: "Create a new account", error: {} });
 };
+
 exports.signupPostController = async (
   req: Request,
   res: Response,
@@ -19,7 +20,10 @@ exports.signupPostController = async (
   // ================ error formatter ==============
   const errors = validationResult(req).formatWith(errorFormatter);
   if (!errors.isEmpty()) {
-    return console.log(errors.mapped());
+    return res.render("pages/auth/signup", {
+      title: "Create a new account",
+      error: errors.mapped(),
+    });
   }
 
   let { userName, email, password, phone, confirmPassword } = req.body;

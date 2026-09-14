@@ -21,6 +21,15 @@ const signupValidator = [
       }
     })
     .trim(),
+  body("phone")
+    .isMobilePhone("en-IN")
+    .withMessage("Please provide a valid phone number")
+    .custom(async (value: any) => {
+      const existingUser = await User.findOne({ phone: value });
+      if (existingUser) {
+        return Promise.reject("Phone number already exists");
+      }
+    }),
   body("email")
     .isEmail()
     .withMessage("Please provide a valid email address")
@@ -35,6 +44,7 @@ const signupValidator = [
     .isLength({ min: 8 })
     .withMessage("Password must be at least 8 characters long"),
   body("confirmPassword")
+    .isLength({ min: 8 })
     .withMessage("Password must be at least 8 characters long")
     .custom((value: any, { req }: any) => {
       if (value !== req.body.password) {
