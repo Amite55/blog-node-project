@@ -14,6 +14,7 @@
                                                         <label class="form-label"  for="userName">Username</label>
                                                         <input
                                                                 class="form-control <%= error.userName ? "is-invalid" : ""%>"
+                                                                value="<%= value.userName ? value.userName : ""%>"
                                                                 id="userName"
                                                                 name="userName"
                                                                 type="text"
@@ -30,6 +31,7 @@
                                                         <label class="form-label"  for="phone">Phone</label>
                                                         <input
                                                                 class="form-control <%= error.phone ? "is-invalid" : ""%>"
+                                                                value="<%= value.phone ? value.phone : ""%>"
                                                                 id="phone"
                                                                 name="phone"
                                                                 type="text"
@@ -46,7 +48,8 @@
                                                 <div class="mb-3">
                                                         <label class="form-label" for="email">Email address</label>
                                                         <input
-                                                                class="form-control <%= error.email ? "is-invalid" : ""%>""
+                                                                class="form-control <%= error.email ? "is-invalid" : ""%>"
+                                                                value="<%= value.email ? value.email : ""%>"
                                                                 id="email"
                                                                 name="email"
                                                                 autocomplete="email"

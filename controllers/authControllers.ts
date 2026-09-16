@@ -9,7 +9,11 @@ exports.signupGetController = async (
   res: Response,
   next: NextFunction,
 ) => {
-  res.render("pages/auth/signup", { title: "Create a new account", error: {} });
+  res.render("pages/auth/signup", {
+    title: "Create a new account",
+    error: {},
+    value: {},
+  });
 };
 
 exports.signupPostController = async (
@@ -17,16 +21,16 @@ exports.signupPostController = async (
   res: Response,
   next: NextFunction,
 ) => {
+  let { userName, email, password, phone, confirmPassword } = req.body;
   // ================ error formatter ==============
   const errors = validationResult(req).formatWith(errorFormatter);
   if (!errors.isEmpty()) {
     return res.render("pages/auth/signup", {
       title: "Create a new account",
       error: errors.mapped(),
+      value: { userName, email, phone },
     });
   }
-
-  let { userName, email, password, phone, confirmPassword } = req.body;
   try {
     // ============= hash password ==============
     const hashedPassword = await bcrypt.hashSync(password, 10);
@@ -50,7 +54,10 @@ exports.loginGetController = async (
   res: Response,
   next: NextFunction,
 ) => {
-  res.render("pages/auth/login", { title: "Log in to your  account" });
+  res.render("pages/auth/login", {
+    title: "Log in to your  account",
+    error: {},
+  });
 };
 exports.loginPostController = async (
   req: Request,
@@ -58,6 +65,14 @@ exports.loginPostController = async (
   next: NextFunction,
 ) => {
   let { email, password } = req.body;
+  // ================ error formatter ==============
+  const errors = validationResult(req).formatWith(errorFormatter);
+  if (!errors.isEmpty()) {
+    return res.render("pages/auth/login", {
+      title: "Log in to your  account",
+      error: errors.mapped(),
+    });
+  }
 
   try {
     let user = await User.findOne({ email });
