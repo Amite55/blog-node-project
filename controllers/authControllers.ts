@@ -76,6 +76,7 @@ exports.loginPostController = async (
 
   try {
     let user = await User.findOne({ email });
+    console.log(user, "fast user-------->");
     if (!user) {
       return res.json({ message: "Invalid credentials" });
     }
@@ -84,8 +85,12 @@ exports.loginPostController = async (
     if (!isMatch) {
       return res.json({ message: "Invalid credentials" });
     }
-    console.log("successfully login", user);
-    res.render("pages/auth/login", { title: "Log in to your  account" });
+    // res.setHeader("set-cookie", "isLoggedIn=true");
+    console.log(user, "here is user");
+    res.render("pages/auth/login", {
+      title: "Log in to your  account",
+      error: {},
+    });
   } catch (error) {
     console.log(error);
     next(error);
