@@ -12,6 +12,12 @@ const MongoDBURI =
 
 // ============= imports routes ==============
 const authRoutes = require("./routes/authRoute");
+const dashboardRoutes = require("./routes/dashboardRoutes");
+
+// ================= imports middlewares ==============
+const { authMiddleware } = require("./middleware/authMiddleware");
+const setLocals = require("./middleware/setLocals");
+
 // ========== set up session store ==========
 const store = new MongoDBStore({
   uri: MongoDBURI,
@@ -39,11 +45,14 @@ const middleware = [
       maxAge: 1000 * 60 * 60 * 24, // 1 day ====
     },
   }),
+  authMiddleware,
+  setLocals(),
 ];
 // ========== middle ware uses ===========
 app.use(middleware);
 
 app.use("/auth", authRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.json({ message: "Hello, New blog full stack site " });

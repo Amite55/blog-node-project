@@ -51,7 +51,6 @@ exports.signupPostController = async (
 };
 // ================== get login controller ==================
 exports.loginGetController = async (req: Request, res: Response) => {
-  console.log(req.session?.user, req.session?.isLoggedIn, "session data");
   res.render("pages/auth/login", {
     title: "Log in to your  account",
     error: {},
