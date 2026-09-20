@@ -13,7 +13,7 @@ const signValidator = [
     })
     .trim(),
   body("phone")
-    .isMobilePhone("en-IN")
+    .isLength({ min: 5 })
     .withMessage("Please provide a valid phone number")
     .custom(async (value: any) => {
       const existingUser = await User.findOne({ phone: value });

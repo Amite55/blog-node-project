@@ -4,6 +4,7 @@ import bcrypt = require("bcryptjs");
 import errorFormatter = require("../utils/ValidationErrorFormator");
 const { validationResult } = require("express-validator");
 
+// ================= get signup controller ==================
 exports.signupGetController = async (
   req: Request,
   res: Response,
@@ -15,7 +16,7 @@ exports.signupGetController = async (
     value: {},
   });
 };
-
+// ==================  signup post controller ==================
 exports.signupPostController = async (
   req: Request,
   res: Response,
@@ -48,23 +49,22 @@ exports.signupPostController = async (
     next(error);
   }
 };
-
-exports.loginGetController = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+// ================== get login controller ==================
+exports.loginGetController = async (req: Request, res: Response) => {
+  console.log(req.session?.user, req.session?.isLoggedIn, "session data");
   res.render("pages/auth/login", {
     title: "Log in to your  account",
     error: {},
   });
 };
+
 exports.loginPostController = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   let { email, password } = req.body;
+
   // ================ error formatter ==============
   const errors = validationResult(req).formatWith(errorFormatter);
   if (!errors.isEmpty()) {
@@ -73,26 +73,30 @@ exports.loginPostController = async (
       error: errors.mapped(),
     });
   }
-
   try {
     let user = await User.findOne({ email });
-    console.log(user, "fast user-------->");
     if (!user) {
       return res.json({ message: "Invalid credentials" });
     }
     // ========== compare password ==========
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user?.password);
     if (!isMatch) {
       return res.json({ message: "Invalid credentials" });
     }
-    // res.setHeader("set-cookie", "isLoggedIn=true");
-    console.log(user, "here is user");
+    //  [=========== set session ==========]
+    req.session.isLoggedIn = true;
+    req.session.user = {
+      id: user._id.toString(),
+      userName: user.userName,
+      email: user.email,
+    };
+
     res.render("pages/auth/login", {
       title: "Log in to your  account",
       error: {},
     });
   } catch (error) {
-    console.log(error);
+    console.log(error, "error in login controller");
     next(error);
   }
 };
