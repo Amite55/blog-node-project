@@ -18,12 +18,23 @@
           class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
           style="--bs-scroll-height: 100px"
         >
-          <li class="nav-item">
+        <% if (isLoggedIn) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/auth/logout">Logout</a>
+            </li>
+        <!-- <li class="nav-item">
+              <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li> -->
+        <% } else{ %>
+           <li class="nav-item">
             <a class="nav-link" href="/auth/login">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/auth/signup">Sign up</a>
           </li>
+        <%
+        } %>
+        
         </ul>
         <form class="d-flex" role="search">
           <input

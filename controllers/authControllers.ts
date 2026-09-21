@@ -89,10 +89,12 @@ exports.loginPostController = async (
       userName: user.userName,
       email: user.email,
     };
-
-    res.render("pages/auth/login", {
-      title: "Log in to your  account",
-      error: {},
+    req.session.save((err) => {
+      if (err) {
+        console.log(err, "error in session save");
+        return next(err);
+      }
+      return res.redirect("/dashboard");
     });
   } catch (error) {
     console.log(error, "error in login controller");
@@ -104,4 +106,23 @@ exports.logoutController = async (
   req: Request,
   res: Response,
   next: NextFunction,
-) => {};
+) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err, "error in logout controller");
+      return next(err);
+    }
+    return res.redirect("/auth/login");
+  });
+};
+
+exports.isUnAuthenticated = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  if (req.session?.isLoggedIn) {
+    return res.redirect("/dashboard");
+  }
+  next();
+};
