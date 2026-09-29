@@ -1,14 +1,13 @@
 import type { NextFunction, Request, Response } from "express";
 
 const mongoose = require("mongoose");
+require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
-const MongoDBURI =
-  process.env.MONGODBURI ||
-  "mongodb+srv://madhob15820sparktech_db_user:D0VHFTII4fiEYYGs@cluster0.xbihixd.mongodb.net/blog_db";
+const Mongo_DB_URI = `mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_PASSWORD}@cluster0.xbihixd.mongodb.net/blog_db`;
 
 // ============= imports routes ==============
 const authRoutes = require("./routes/authRoute");
@@ -20,7 +19,7 @@ const setLocals = require("./middleware/setLocals");
 
 // ========== set up session store ==========
 const store = new MongoDBStore({
-  uri: MongoDBURI,
+  uri: Mongo_DB_URI,
   collection: "sessions",
   expiration: 1000 * 60 * 60 * 24, // 1 day
 });
@@ -61,7 +60,7 @@ app.get("/", (req: Request, res: Response) => {
 const PORT = process.env.PORT || 3002;
 // ================ connect to database ==============
 mongoose
-  .connect(MongoDBURI)
+  .connect(Mongo_DB_URI)
   .then(() => {
     console.log("Database connected successfully");
     app.listen(PORT, () => {
