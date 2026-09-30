@@ -5,9 +5,10 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const session = require("express-session");
+const config = require("config");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
-const Mongo_DB_URI = `mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_PASSWORD}@cluster0.xbihixd.mongodb.net/blog_db`;
+const Mongo_DB_URI = `mongodb+srv://${config.get("db-user-name")}:${config.get("db-password")}@cluster0.xbihixd.mongodb.net/blog_db`;
 
 // ============= imports routes ==============
 const authRoutes = require("./routes/authRoute");
