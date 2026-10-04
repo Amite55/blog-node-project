@@ -28,6 +28,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   if (error.status === 404) {
     return res.render("pages/error/404", { title: "404 - Page Not Found" });
+  } else {
+    return res.render("pages/error/500", {
+      title: "500 - Internal Server Error",
+    });
   }
 });
 
