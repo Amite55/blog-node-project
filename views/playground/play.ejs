@@ -1,0 +1,54 @@
+<%- include("../partials/head.ejs") %>
+
+<main class="container py-5">
+        <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                        <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4 p-md-5">
+                                        <div class="text-center mb-4">
+                                                <h1 class="h3 fw-bold mb-2">Update your profile</h1>
+                                                <p class="text-secondary mb-0">Update your username and profile file.</p>
+                                        </div>
+                                        <form action="/playground/play" method="POST" enctype="multipart/form-data">
+                                                <div class="mb-3">
+                                                        <label class="form-label"  for="userName">Username</label>
+                                                        <input
+                                                                class="form-control"
+                                                                id="userName"
+                                                                name="userName"
+                                                                type="text"
+                                                                minlength="15"
+                                                                autocomplete="username"
+                                                                placeholder="Enter your username"
+                                                                required
+                                                        />
+                                                        <div class="form-text">Username must be at least 15 characters.</div>
+                                                </div>
+                                                <div class="mb-4">
+                                                        <label class="form-label" for="profileFile">Profile file</label>
+                                                        <input
+                                                                class="form-control"
+                                                                id="profileFile"
+                                                                name="my-file"
+                                                                type="file"
+                                                                accept="image/*"
+                                                        />
+                                                        <div class="form-text">Choose an image file to upload.</div>
+                                                </div>
+                                                <button class="btn btn-dark w-100" type="submit">Save changes</button>
+                                        </form>
+
+                                        <p class="text-center text-secondary mt-4 mb-0">
+                                                Already have an account?
+                                                <a class="link-dark fw-semibold" href="/auth/login">Log in</a>
+                                        </p>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</main>
+
+<%- include("../partials/footer.ejs") %>
+
+</body>
+</html>
