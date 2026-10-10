@@ -16,7 +16,6 @@ const routes = [
     path: "/playground",
     handler: playgroundRoutes,
   },
-
   {
     path: "/",
     handler: (req: Request, res: Response) => {
