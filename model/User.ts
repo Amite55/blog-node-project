@@ -11,6 +11,7 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Profile",
     },
+    profileImage: { type: String, default: "/uploads/default.png" },
   },
   {
     timestamps: true,
