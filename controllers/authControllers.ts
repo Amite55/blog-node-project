@@ -43,7 +43,10 @@ exports.signupPostController = async (
       phone,
     });
     await user.save();
-    res.render("pages/auth/signup", { title: "Create a new account" });
+    res.render("pages/auth/login", {
+      title: "Create a new account",
+      error: {},
+    });
   } catch (error) {
     console.log(error);
     next(error);
