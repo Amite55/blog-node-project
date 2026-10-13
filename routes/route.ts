@@ -2,6 +2,7 @@ const authRoutes = require("./authRoute");
 const dashboardRoutes = require("./dashboardRoutes");
 import type { NextFunction, Request, Response } from "express";
 const playgroundRoutes = require("../playground/play");
+const uploadRoutes = require("./uploadsRoutes");
 
 const routes = [
   {
@@ -11,6 +12,10 @@ const routes = [
   {
     path: "/dashboard",
     handler: dashboardRoutes,
+  },
+  {
+    path: "/uploads",
+    handler: uploadRoutes,
   },
   {
     path: "/playground",
